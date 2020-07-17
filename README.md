@@ -8,7 +8,7 @@
     <h3>Maps</h3>
   </p>
   <p>
-    An extended `Map` class for Node.js
+    An extended <code>Map</code> class for Node.js
   </p>
   <br/>
   <p>
@@ -55,12 +55,18 @@ const cache = new Map()
 cache.isEmpty()
 // true
 
-cach.add('user:1', 'Marcus')
-cach.add('user:2', 'Supercharge')
+cache
+  .set('user:1', 'Marcus')
+  .set('user:2', 'Supercharge')
+
+cache.isNotEmpty()
+// true
 
 const users = cache.map((value, key) => {
-  return { key: value }
+  return { [key]: value }
 })
+
+// [{ 'user:1': 'Marcus' }, { 'user:2': 'Supercharge' }]
 
 ```
 
