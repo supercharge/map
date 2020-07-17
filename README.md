@@ -70,11 +70,9 @@ const users = cache.map((value, key) => {
 
 ```
 
-For every method in the chain that would return a string, the package returns an instance of iteself. This way, you can chain further methods. Call `.get()` to retrieve the actual JavaScript string.
-
 
 ## Contributing
-Do you miss a string function? We very much appreciate your contribution! Please send in a pull request 😊
+Do you miss a function? We very much appreciate your contribution! Please send in a pull request 😊
 
 1.  Create a fork
 2.  Create your feature branch: `git checkout -b my-feature`
