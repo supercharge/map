@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "author": "Marcus Pöhls <marcus@superchargejs.com>",
   "bugs": {
-    "url": "https://github.com/supercharge/map/issues"
+    "url": "https://github.com/supercharge/maps/issues"
   },
   "devDependencies": {
     "@hapi/code": "~7.0.0",
     "@hapi/lab": "~21.0.0",
     "@supercharge/tsconfig": "~1.0.0",
-    "@types/uuid": "~8.0.0",
     "@typescript-eslint/eslint-plugin": "~2.34.0",
     "eslint": "~6.8.0",
     "eslint-config-standard": "~14.1.1",
@@ -21,14 +20,11 @@
     "eslint-plugin-standard": "~4.0.1",
     "typescript": "~3.9.6"
   },
-  "engines": {
-    "node": ">=8"
-  },
   "files": [
     "dist",
     "index.js"
   ],
-  "homepage": "https://github.com/supercharge/map",
+  "homepage": "https://github.com/supercharge/maps",
   "keywords": [
     "supercharge",
     "superchargejs",
@@ -42,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/supercharge/map.git"
+    "url": "git+https://github.com/supercharge/maps.git"
   },
   "scripts": {
     "build": "tsc",
