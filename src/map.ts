@@ -36,11 +36,11 @@ export class SuperchargedMap<K, V> extends Map<K, V> {
    *
    * @returns {Array}
    */
-  map<R> (transform: (value: V, key: K) => R): R[] {
+  map<R> (transform: (value: V, key: K, map: SuperchargedMap<K, V>) => R): R[] {
     const results: R[] = []
 
     this.forEach((value, key) => {
-      results.push(transform(value, key))
+      results.push(transform(value, key, this))
     })
 
     return results
