@@ -30,7 +30,9 @@
 ---
 
 ## Introduction
-The `@supercharge/maps` package … tba.
+The `@supercharge/maps` package provides an extended JavaScript `Map` class providing methods like `.isEmpty()`, `.map(callback)`, and many more.
+
+You already know methods like `.map()` from arrays and having them available on maps improves your development experience and makes your code more readable.
 
 
 ## Installation
@@ -45,7 +47,7 @@ Find all the [details for `@supercharge/maps` in the extensive Supercharge docs]
 
 
 ## Usage
-Using `@supercharge/maps` is pretty straightforward
+Using `@supercharge/maps` is pretty straightforward. Import the `@supercharge/maps` package and use it the same way you would use JavaScript’s `Map` class. On top, use the extra methods provided by the package:
 
 ```js
 const Map = require('@supercharge/maps')
@@ -87,5 +89,5 @@ MIT © [Supercharge](https://superchargejs.com)
 ---
 
 > [superchargejs.com](https://superchargejs.com) &nbsp;&middot;&nbsp;
-> GitHub [@superchargejs](https://github.com/superchargejs/) &nbsp;&middot;&nbsp;
+> GitHub [@superchargejs](https://github.com/supercharge/) &nbsp;&middot;&nbsp;
 > Twitter [@superchargejs](https://twitter.com/superchargejs)
