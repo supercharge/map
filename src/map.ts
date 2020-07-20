@@ -14,6 +14,8 @@ export class SuperchargedMap<K, V> extends Map<K, V> {
 
   /**
    * Determine whether the map is empty (contains no entries).
+   *
+   * @returns {Boolean}
    */
   isEmpty (): boolean {
     return this.size === 0
@@ -21,6 +23,8 @@ export class SuperchargedMap<K, V> extends Map<K, V> {
 
   /**
    * Determine whether the map is not empty (contains entries).
+   *
+   * @returns {Boolean}
    */
   isNotEmpty (): boolean {
     return !this.isEmpty()
