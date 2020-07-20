@@ -2,6 +2,17 @@
 
 export class SuperchargedMap<K, V> extends Map<K, V> {
   /**
+   * Create a new map instance of the given key/value pair `entries`.
+   *
+   * @param {Array} entries
+   *
+   * @returns {SuperchargedMap}
+   */
+  static of<K, V> (entries?: Array<[K, V]> | null): SuperchargedMap<K, V> {
+    return new this<K, V>(entries)
+  }
+
+  /**
    * Determine whether the map is empty (contains no entries).
    */
   isEmpty (): boolean {

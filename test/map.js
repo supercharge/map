@@ -7,6 +7,19 @@ const { expect } = require('@hapi/code')
 const { describe, it } = (exports.lab = Lab.script())
 
 describe('Maps', () => {
+  it('of', () => {
+    expect(Map.of().isEmpty()).to.be.true()
+    expect(Map.of([]).isEmpty()).to.be.true()
+    expect(Map.of(null).isEmpty()).to.be.true()
+    expect(Map.of(undefined).isEmpty()).to.be.true()
+
+    expect(() => Map.of(['key', 'value'])).to.throw()
+    expect(() => Map.of([['key', 'value']])).to.not.throw()
+
+    expect(Map.of([['key', 'value']]).has('key')).to.be.true()
+    expect(Map.of([['key', 'value'], ['name', 'Marcus']]).has('key')).to.be.true()
+  })
+
   it('isEmpty', () => {
     const map = new Map()
     expect(map.isEmpty()).to.be.true()
@@ -36,6 +49,7 @@ describe('Maps', () => {
 
   it('map', () => {
     const cache = new Map()
+
     cache
       .set('user:1', 'Marcus')
       .set('user:2', 'Supercharge')
