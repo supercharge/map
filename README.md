@@ -5,7 +5,7 @@
   <br/>
   <br/>
   <p>
-    <h3>Maps</h3>
+    <h3>Map</h3>
   </p>
   <p>
     An extended <code>Map</code> class for Node.js
@@ -19,8 +19,8 @@
   <br/>
   <br/>
   <p>
-    <a href="https://www.npmjs.com/package/@supercharge/maps"><img src="https://img.shields.io/npm/v/@supercharge/maps.svg" alt="Latest Version"></a>
-    <a href="https://www.npmjs.com/package/@supercharge/maps"><img src="https://img.shields.io/npm/dm/@supercharge/maps.svg" alt="Monthly downloads"></a>
+    <a href="https://www.npmjs.com/package/@supercharge/map"><img src="https://img.shields.io/npm/v/@supercharge/map.svg" alt="Latest Version"></a>
+    <a href="https://www.npmjs.com/package/@supercharge/map"><img src="https://img.shields.io/npm/dm/@supercharge/map.svg" alt="Monthly downloads"></a>
   </p>
   <p>
     <em>Follow <a href="http://twitter.com/marcuspoehls">@marcuspoehls</a> and <a href="http://twitter.com/superchargejs">@superchargejs</a> for updates!</em>
@@ -30,7 +30,7 @@
 ---
 
 ## Introduction
-The `@supercharge/maps` package provides an extended JavaScript `Map` class providing methods like `.isEmpty()`, `.map(callback)`, and many more.
+The `@supercharge/map` package provides an extended JavaScript `Map` class. It comes with additional methods like `.isEmpty()` or `.map(callback)`.
 
 You already know methods like `.map()` from arrays and having them available on maps improves your development experience and makes your code more readable.
 
@@ -38,19 +38,19 @@ You already know methods like `.map()` from arrays and having them available on 
 ## Installation
 
 ```
-npm i @supercharge/maps
+npm i @supercharge/map
 ```
 
 
 ## Docs
-Find all the [details for `@supercharge/maps` in the extensive Supercharge docs](https://superchargejs.com/docs/maps).
+Find all the [details for `@supercharge/map` in the extensive Supercharge docs](https://superchargejs.com/docs/map).
 
 
 ## Usage
-Using `@supercharge/maps` is pretty straightforward. Import the `@supercharge/maps` package and use it the same way you would use JavaScript’s `Map` class. On top, use the extra methods provided by the package:
+Using `@supercharge/map` is pretty straightforward. Import the `Map` class exported from the `@supercharge/map` package and use it the same way you would use JavaScript’s `Map` class. On top, use the extra methods provided by the package:
 
 ```js
-const Map = require('@supercharge/maps')
+const Map = require('@supercharge/map')
 
 const cache = new Map()
 
