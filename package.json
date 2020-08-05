@@ -1,6 +1,6 @@
 {
   "name": "@supercharge/map",
-  "description": "An extended Map class for Node.js and JavaScript",
+  "description": "An extended Map class and the one JavaScript should have shipped",
   "version": "0.0.0",
   "author": "Marcus Pöhls <marcus@superchargejs.com>",
   "bugs": {
