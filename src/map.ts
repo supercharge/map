@@ -196,12 +196,13 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns an array containing the results of applying the
-   * given `transform` function to each entry in the map.
+   * Returns a map containing only items matching the given `predicate`. Return
+   * `true` from your `predicate` function to keep the entry in the map.
+   * Return `false` to remove the entry form the map.
    *
-   * @param {Function} transform
+   * @param {Function} predicate
    *
-   * @returns {Array}
+   * @returns {SuperchargedMap}
    */
   filter (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): SuperchargedMap<K, V> {
     const results: SuperchargedMap<K, V> = new SuperchargedMap<K, V>()
