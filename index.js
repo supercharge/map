@@ -1,5 +1,5 @@
 'use strict'
 
-const Str = require('./dist')
+const Map = require('./dist')
 
-module.exports = Str
+module.exports = Map
