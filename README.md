@@ -47,7 +47,7 @@ Find all the [details for `@supercharge/map` in the extensive Supercharge docs](
 
 
 ## Usage
-Using `@supercharge/map` is pretty straightforward. Import the `Map` class exported from the `@supercharge/map` package and use it the same way you would use JavaScript’s `Map` class. On top, use the extra methods provided by the package:
+Using `@supercharge/map` is pretty straightforward. Import the `Map` class exported from the `@supercharge/map` package and use it (almost) the same way you would use JavaScript’s `Map` class. This package gives you the parameter order `key, value, map` in callbacks. JavaScript’s Map class gives you `value, key, map`:
 
 ```js
 const Map = require('@supercharge/map')
@@ -64,7 +64,7 @@ cache
 cache.isNotEmpty()
 // true
 
-const users = cache.map((value, key) => {
+const users = cache.map((key, value, map) => {
   return { [key]: value }
 })
 
