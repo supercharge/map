@@ -60,7 +60,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns an iterable of key-value-pairs for every entry in the map.
+   * Returns an iterable of key-value-pairs for all entries in the map.
    *
    * @returns {IterableIterator}
    */
@@ -105,9 +105,9 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Determine whether the set contains the given `value`.
+   * Determine whether the set contains the given `key`.
    *
-   * @param {*} value
+   * @param {*} key
    *
    * @returns {Boolean}
    */
@@ -134,7 +134,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns an iterable of the map keys.
+   * Returns an iterable of all keys in the map.
    *
    * @returns {IterableIterator}
    */
@@ -167,7 +167,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns an iterable of the map values.
+   * Returns an iterable of all values in the map.
    *
    * @returns {IterableIterator}
    */
