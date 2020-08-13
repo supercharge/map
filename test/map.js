@@ -6,7 +6,7 @@ const { expect } = require('@hapi/code')
 
 const { describe, it } = (exports.lab = Lab.script())
 
-describe('Maps', () => {
+describe('Map', () => {
   it('of', () => {
     expect(Map.of().isEmpty()).to.be.true()
     expect(Map.of([]).isEmpty()).to.be.true()
