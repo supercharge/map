@@ -8,7 +8,7 @@
     <h3>Map</h3>
   </p>
   <p>
-    An extended <code>Map</code> class for Node.js
+    An extended <code>Map</code> and the one JavaScript should have shipped
   </p>
   <br/>
   <p>
