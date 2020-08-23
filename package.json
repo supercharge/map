@@ -24,8 +24,7 @@
     "typescript": "~3.9.7"
   },
   "files": [
-    "dist",
-    "index.js"
+    "dist"
   ],
   "homepage": "https://github.com/supercharge/map",
   "keywords": [
@@ -35,7 +34,7 @@
     "nodejs"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist",
   "publishConfig": {
     "access": "public"
   },
