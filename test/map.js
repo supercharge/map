@@ -1,23 +1,19 @@
 'use strict'
 
 const Map = require('..')
-const Lab = require('@hapi/lab')
-const { expect } = require('@hapi/code')
-
-const { describe, it } = (exports.lab = Lab.script())
 
 describe('Map', () => {
   it('of', () => {
-    expect(Map.of().isEmpty()).to.be.true()
-    expect(Map.of([]).isEmpty()).to.be.true()
-    expect(Map.of(null).isEmpty()).to.be.true()
-    expect(Map.of(undefined).isEmpty()).to.be.true()
+    expect(Map.of().isEmpty()).toBe(true)
+    expect(Map.of([]).isEmpty()).toBe(true)
+    expect(Map.of(null).isEmpty()).toBe(true)
+    expect(Map.of(undefined).isEmpty()).toBe(true)
 
-    expect(() => Map.of(['key', 'value'])).to.throw()
-    expect(() => Map.of([['key', 'value']])).to.not.throw()
+    expect(() => Map.of(['key', 'value'])).toThrow()
+    expect(() => Map.of([['key', 'value']])).not.toThrow()
 
-    expect(Map.of([['key', 'value']]).has('key')).to.be.true()
-    expect(Map.of([['key', 'value'], ['name', 'Marcus']]).has('key')).to.be.true()
+    expect(Map.of([['key', 'value']]).has('key')).toBe(true)
+    expect(Map.of([['key', 'value'], ['name', 'Marcus']]).has('key')).toBe(true)
   })
 
   it('clear', () => {
@@ -26,15 +22,15 @@ describe('Map', () => {
       [2, 'Supercharge']
     ])
 
-    expect(map.size()).to.equal(2)
-    expect(map.has(1)).to.be.true()
-    expect(map.has(2)).to.be.true()
+    expect(map.size()).toEqual(2)
+    expect(map.has(1)).toBe(true)
+    expect(map.has(2)).toBe(true)
 
     map.clear()
 
-    expect(map.size()).to.equal(0)
-    expect(map.has(1)).to.be.false()
-    expect(map.has(2)).to.be.false()
+    expect(map.size()).toEqual(0)
+    expect(map.has(1)).toBe(false)
+    expect(map.has(2)).toBe(false)
   })
 
   it('delete', () => {
@@ -43,13 +39,13 @@ describe('Map', () => {
       [2, 'Supercharge']
     ])
 
-    expect(map.size()).to.equal(2)
-    expect(map.has(1)).to.be.true()
+    expect(map.size()).toEqual(2)
+    expect(map.has(1)).toBe(true)
 
     map.delete(1)
 
-    expect(map.size()).to.equal(1)
-    expect(map.has(1)).to.be.false()
+    expect(map.size()).toEqual(1)
+    expect(map.has(1)).toBe(false)
   })
 
   it('entries', () => {
@@ -60,22 +56,22 @@ describe('Map', () => {
 
     const iterator = map.entries()
 
-    expect(iterator.next().value).to.equal([1, 'Marcus'])
-    expect(iterator.next().value).to.equal([2, 'Supercharge'])
-    expect(iterator.next().value).to.be.undefined()
+    expect(iterator.next().value).toEqual([1, 'Marcus'])
+    expect(iterator.next().value).toEqual([2, 'Supercharge'])
+    expect(iterator.next().value).toBeUndefined()
   })
 
   it('isEmpty', () => {
     const map = new Map()
-    expect(map.isEmpty()).to.be.true()
+    expect(map.isEmpty()).toBe(true)
   })
 
   it('isNotEmpty', () => {
     const map = new Map()
-    expect(map.isEmpty()).to.be.true()
+    expect(map.isEmpty()).toBe(true)
 
     map.set('name', 'Marcus')
-    expect(map.isNotEmpty()).to.be.true()
+    expect(map.isNotEmpty()).toBe(true)
   })
 
   it('keys', () => {
@@ -86,23 +82,23 @@ describe('Map', () => {
 
     const iterator = map.keys()
 
-    expect(iterator.next().value).to.equal(1)
-    expect(iterator.next().value).to.equal(2)
-    expect(iterator.next().value).to.be.undefined()
+    expect(iterator.next().value).toEqual(1)
+    expect(iterator.next().value).toEqual(2)
+    expect(iterator.next().value).toBeUndefined()
   })
 
   it('getOrDefault', () => {
     const map = new Map()
-    expect(map.getOrDefault('name', 'default')).to.equal('default')
+    expect(map.getOrDefault('name', 'default')).toEqual('default')
 
     map.set('name', '')
-    expect(map.getOrDefault('name', 'default')).to.equal('')
+    expect(map.getOrDefault('name', 'default')).toEqual('')
 
     map.set('name', null)
-    expect(map.getOrDefault('name', 'default')).to.equal('default')
+    expect(map.getOrDefault('name', 'default')).toEqual('default')
 
     map.set('name', 'Marcus')
-    expect(map.getOrDefault('name', 'default')).to.equal('Marcus')
+    expect(map.getOrDefault('name', 'default')).toEqual('Marcus')
   })
 
   it('map', () => {
@@ -116,7 +112,7 @@ describe('Map', () => {
       return { [key]: value }
     })
 
-    expect(users).to.equal([
+    expect(users).toEqual([
       { 'user:1': 'Marcus' },
       { 'user:2': 'Supercharge' }
     ])
@@ -130,9 +126,9 @@ describe('Map', () => {
 
     const iterator = map.values()
 
-    expect(iterator.next().value).to.equal('Marcus')
-    expect(iterator.next().value).to.equal('Supercharge')
-    expect(iterator.next().value).to.be.undefined()
+    expect(iterator.next().value).toEqual('Marcus')
+    expect(iterator.next().value).toEqual('Supercharge')
+    expect(iterator.next().value).toBeUndefined()
   })
 
   it('filter', () => {
@@ -148,11 +144,11 @@ describe('Map', () => {
       return key === 'user:1' || value === 'Norman'
     })
 
-    expect(users.size()).to.equal(2)
-    expect(users.has('user:1')).to.be.true()
-    expect(users.has('user:2')).to.be.true()
-    expect(users.has('user:3')).to.be.false()
-    expect(users.has('user:4')).to.be.false()
+    expect(users.size()).toEqual(2)
+    expect(users.has('user:1')).toBe(true)
+    expect(users.has('user:2')).toBe(true)
+    expect(users.has('user:3')).toBe(false)
+    expect(users.has('user:4')).toBe(false)
   })
 
   it('for..of', () => {
@@ -167,7 +163,7 @@ describe('Map', () => {
       array.push({ [key]: value })
     }
 
-    expect(array).to.equal([
+    expect(array).toEqual([
       { 1: 'Marcus' },
       { 2: 'Supercharge' }
     ])
@@ -180,7 +176,7 @@ describe('Map', () => {
     ])
 
     const iterable = map[Symbol.iterator]()
-    expect(iterable.next).to.be.a.function()
+    expect(iterable.next).toBeInstanceOf(Function)
 
     const array = []
 
@@ -188,7 +184,7 @@ describe('Map', () => {
       array.push({ [key]: value })
     }
 
-    expect(array).to.equal([
+    expect(array).toEqual([
       { 1: 'Marcus' },
       { 2: 'Supercharge' }
     ])
