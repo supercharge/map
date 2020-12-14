@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/supercharge/map/compare/v1.1.0...v1.2.0) - 2020-12-14
+
+### Added
+- add `contains(predicate)` method to determine whether the map satisfies the predicate function
+- add `includes(predicate)` method as an alias for the `contains` method
+
+
 ## [1.1.0](https://github.com/supercharge/map/compare/v1.0.0...v1.1.0) - 2020-12-14
 
 ### Updated
