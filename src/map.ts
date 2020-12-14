@@ -215,4 +215,29 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
 
     return results
   }
+
+  /**
+   * This is an alias method for `Map#contains`. Determine whether the
+   * map contains an item identified by the predicate function.
+   *
+   * @param {Function} predicate
+   *
+   * @returns {boolean}
+   */
+  includes (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
+    return this.contains(predicate)
+  }
+
+  /**
+   * Determine whether the map contains an item identified by the predicate function.
+   *
+   * @param {Function} predicate
+   *
+   * @returns {boolean}
+   */
+  contains (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
+    return typeof predicate !== 'function'
+      ? this.has(predicate)
+      : this.filter(predicate).isNotEmpty()
+  }
 }

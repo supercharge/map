@@ -189,4 +189,25 @@ describe('Map', () => {
       { 2: 'Supercharge' }
     ])
   })
+
+  it('includes', () => {
+    const cache = new Map()
+
+    cache
+      .set('user:1', 'Marcus')
+      .set('user:2', 'Supercharge')
+
+    expect(cache.includes('user:1')).toBe(true)
+    expect(cache.includes('Marcus')).toBe(false)
+
+    expect(cache.includes((key) => key === 'user:1')).toBe(true)
+    expect(cache.includes((_, value) => value === 'Supercharge')).toBe(true)
+    expect(
+      cache.includes((key, value) => {
+        return key === 'user:3' || value === 'Marcus'
+      })
+    ).toBe(true)
+
+    expect(cache.includes((key) => key === 'user:3')).toBe(false)
+  })
 })
