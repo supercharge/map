@@ -33,6 +33,21 @@ describe('Map', () => {
     expect(map.has(2)).toBe(false)
   })
 
+  it('missing', () => {
+    const map = Map.of([
+      [1, 'Marcus'],
+      [2, 'Supercharge']
+    ])
+
+    expect(map.missing(1)).toBe(false)
+    expect(map.missing(2)).toBe(false)
+
+    map.delete(1)
+
+    expect(map.missing(1)).toBe(true)
+    expect(map.missing(2)).toBe(false)
+  })
+
   it('delete', () => {
     const map = Map.of([
       [1, 'Marcus'],

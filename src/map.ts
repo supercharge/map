@@ -49,7 +49,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Delete the given `value` from the set.
+   * Delete the given `value` from the map.
    *
    * @param {*} key
    *
@@ -69,7 +69,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Runs the given `action` on each key-value-pair in the set.
+   * Runs the given `action` on each key-value-pair in the map.
    *
    * @param {Function} action
    */
@@ -105,7 +105,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Determine whether the set contains the given `key`.
+   * Determine whether the map contains the given `key`.
    *
    * @param {*} key
    *
@@ -113,6 +113,17 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    */
   has (key: K): boolean {
     return this.items.has(key)
+  }
+
+  /**
+   * Determine whether the map is missing the given `key`.
+   *
+   * @param {*} key
+   *
+   * @returns {Boolean}
+   */
+  missing (key: K): boolean {
+    return !this.items.has(key)
   }
 
   /**
