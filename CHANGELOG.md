@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/supercharge/map/compare/v1.2.0...v1.3.0) - 2021-02-19
+
+### Added
+- add `missing(key)` method  determining whether the map is missing the given `key`
+
+### Updated
+- bump dependencies
+
+
 ## [1.2.0](https://github.com/supercharge/map/compare/v1.1.0...v1.2.0) - 2020-12-14
 
 ### Added
