@@ -10,6 +10,7 @@
 
 ### Updated
 - bump dependencies
+- remove the `@supercharge/goodies` dependency
 - deprecated `missing(key)` method in favor of `isMissing(key)`
 
 
