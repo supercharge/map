@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/supercharge/map/compare/v1.3.0...v1.4.0) - 2021-07-05
+
+### Added
+- create a map with entries from an existing object:
+  - you can now use `Map.of({ key: 'value' })` or `new Map({ key: 'value' })`
+  - you can still use the key-value arrays for entries: `Map.of([['key', 'value']])`
+- add `isMissing(key)` method: determining whether the map is missing the given `key`
+
+### Updated
+- bump dependencies
+- deprecated `missing(key)` method in favor of `isMissing(key)`
+
+
 ## [1.3.0](https://github.com/supercharge/map/compare/v1.2.0...v1.3.0) - 2021-02-19
 
 ### Added
