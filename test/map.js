@@ -1,6 +1,6 @@
 'use strict'
 
-const Map = require('..')
+const Map = require('../dist')
 
 describe('Map', () => {
   it('of', () => {
@@ -39,13 +39,25 @@ describe('Map', () => {
       [2, 'Supercharge']
     ])
 
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {})
+
     expect(map.missing(1)).toBe(false)
-    expect(map.missing(2)).toBe(false)
+    expect(log).toBeCalled()
+  })
+
+  it('isMissing', () => {
+    const map = Map.of([
+      [1, 'Marcus'],
+      [2, 'Supercharge']
+    ])
+
+    expect(map.isMissing(1)).toBe(false)
+    expect(map.isMissing(2)).toBe(false)
 
     map.delete(1)
 
-    expect(map.missing(1)).toBe(true)
-    expect(map.missing(2)).toBe(false)
+    expect(map.isMissing(1)).toBe(true)
+    expect(map.isMissing(2)).toBe(false)
   })
 
   it('delete', () => {
@@ -224,5 +236,15 @@ describe('Map', () => {
     ).toBe(true)
 
     expect(cache.includes((key) => key === 'user:3')).toBe(false)
+  })
+
+  it('toObject', () => {
+    const cache = new Map()
+
+    cache
+      .set('1', 'Marcus')
+      .set(2, 'Supercharge')
+
+    expect(cache.toObject()).toEqual({ 1: 'Marcus', 2: 'Supercharge' })
   })
 })

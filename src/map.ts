@@ -255,6 +255,15 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
+   * Transforms the map to a plain JavaScript object.
+   *
+   * @returns {Record<string, V>}
+   */
+  toObject (): Record<string, V> {
+    return Object.fromEntries(this)
+  }
+
+  /**
    * Returns an iterable of all values in the map.
    *
    * @returns {IterableIterator}
