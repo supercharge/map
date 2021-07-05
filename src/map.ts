@@ -11,8 +11,34 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @param entries
    */
-  constructor (entries?: Array<[K, V]> | null) {
-    this.items = new Map<K, V>(entries)
+  constructor (entries?: Array<[K, V]> | Record<string, V> | null) {
+    this.items = new Map<K, V>(
+      this.createEntries(entries)
+    )
+  }
+
+  /**
+   * Create an array of [key, value] entries from the given `entries` parameter.
+   *
+   * @param entries
+   *
+   * @returns {Array}
+   */
+  private createEntries (entries?: Array<[K, V]> | Record<string, V> | null): Array<[K, V]> {
+    return Array.isArray(entries)
+      ? entries
+      : this.createEntriesFromObject(entries)
+  }
+
+  /**
+   * Create the internal map from the given `entries` object.
+   *
+   * @param {Object} entries
+   *
+   * @returns {Array}
+   */
+  private createEntriesFromObject (entries?: Record<string, V> | null): Array<[K, V]> {
+    return Object.entries(entries ?? {}) as unknown as Array<[K, V]>
   }
 
   /**
@@ -22,7 +48,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @returns {SuperchargedMap}
    */
-  static of<K, V> (entries?: Array<[K, V]>): SuperchargedMap<K, V> {
+  static of<K, V> (entries?: Array<[K, V]> | Record<string, V>): SuperchargedMap<K, V> {
     return new this<K, V>(entries)
   }
 
@@ -246,7 +272,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns the size of the map.
+   * Returns the size of the map, means the number of stored key-value entries.
    *
    * @returns {Number}
    */

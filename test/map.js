@@ -11,9 +11,13 @@ describe('Map', () => {
 
     expect(() => Map.of(['key', 'value'])).toThrow()
     expect(() => Map.of([['key', 'value']])).not.toThrow()
+    expect(() => Map.of({ key: 'value' })).not.toThrow()
 
     expect(Map.of([['key', 'value']]).has('key')).toBe(true)
     expect(Map.of([['key', 'value'], ['name', 'Marcus']]).has('key')).toBe(true)
+
+    expect(Map.of({ key: 'value' }).size()).toBe(1)
+    expect(Map.of({ key: 'value' }).has('key')).toBe(true)
   })
 
   it('clear', () => {
