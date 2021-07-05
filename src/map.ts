@@ -1,7 +1,5 @@
 'use strict'
 
-import { tap } from '@supercharge/goodies'
-
 export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   /**
    * Contains the key-value-pairs in the map.
@@ -43,9 +41,22 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    * @returns {SuperchargedMap}
    */
   clear (): this {
-    return tap(this, () => {
-      this.items.clear()
-    })
+    this.items.clear()
+
+    return this
+  }
+
+  /**
+   * Determine whether the map contains an item identified by the predicate function.
+   *
+   * @param {Function} predicate
+   *
+   * @returns {boolean}
+   */
+  contains (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
+    return typeof predicate !== 'function'
+      ? this.has(predicate)
+      : this.filter(predicate).isNotEmpty()
   }
 
   /**
@@ -66,6 +77,27 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    */
   entries (): IterableIterator<[K, V]> {
     return this.items.entries()
+  }
+
+  /**
+   * Returns a map containing only items matching the given `predicate`. Return
+   * `true` from your `predicate` function to keep the entry in the map.
+   * Return `false` to remove the entry form the map.
+   *
+   * @param {Function} predicate
+   *
+   * @returns {SuperchargedMap}
+   */
+  filter (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): SuperchargedMap<K, V> {
+    const results: SuperchargedMap<K, V> = new SuperchargedMap<K, V>()
+
+    this.forEach((key: K, value: V) => {
+      if (predicate(key, value, this)) {
+        results.set(key, value)
+      }
+    })
+
+    return results
   }
 
   /**
@@ -116,14 +148,15 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Determine whether the map is missing the given `key`.
+   * This is an alias method for `Map#contains`. Determine whether the
+   * map contains an item identified by the predicate function.
    *
-   * @param {*} key
+   * @param {Function} predicate
    *
-   * @returns {Boolean}
+   * @returns {boolean}
    */
-  missing (key: K): boolean {
-    return !this.items.has(key)
+  includes (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
+    return this.contains(predicate)
   }
 
   /**
@@ -154,39 +187,6 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Set the `key`-`value`-pair in the map. This method overrides
-   * a map entry with the given `key` if it already exists.
-   *
-   * @param {*} key
-   * @param {*} value
-   *
-   * @returns {SuperchargedMap}
-   */
-  set (key: K, value: V): this {
-    return tap(this, () => {
-      this.items.set(key, value)
-    })
-  }
-
-  /**
-   * Returns the size of the map.
-   *
-   * @returns {Number}
-   */
-  size (): number {
-    return this.items.size
-  }
-
-  /**
-   * Returns an iterable of all values in the map.
-   *
-   * @returns {IterableIterator}
-   */
-  values (): IterableIterator<V> {
-    return this.items.values()
-  }
-
-  /**
    * Returns an array containing the results of applying the
    * given `transform` function to each entry in the map.
    *
@@ -207,48 +207,59 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   }
 
   /**
-   * Returns a map containing only items matching the given `predicate`. Return
-   * `true` from your `predicate` function to keep the entry in the map.
-   * Return `false` to remove the entry form the map.
+   * Determine whether the map is missing the given `key`.
    *
-   * @param {Function} predicate
+   * @param {*} key
+   *
+   * @returns {Boolean}
+   */
+  missing (key: K): boolean {
+    console.log('The "missing" method is deprecated in the @supercharge/map package. Please use "isMissing" instead.')
+
+    return this.isMissing(key)
+  }
+
+  /**
+   * Determine whether the map is missing the given `key`.
+   *
+   * @param {*} key
+   *
+   * @returns {Boolean}
+   */
+  isMissing (key: K): boolean {
+    return !this.has(key)
+  }
+
+  /**
+   * Set the `key`-`value`-pair in the map. This method overrides
+   * a map entry with the given `key` if it already exists.
+   *
+   * @param {*} key
+   * @param {*} value
    *
    * @returns {SuperchargedMap}
    */
-  filter (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): SuperchargedMap<K, V> {
-    const results: SuperchargedMap<K, V> = new SuperchargedMap<K, V>()
+  set (key: K, value: V): this {
+    this.items.set(key, value)
 
-    this.forEach((key: K, value: V) => {
-      if (predicate(key, value, this)) {
-        results.set(key, value)
-      }
-    })
-
-    return results
+    return this
   }
 
   /**
-   * This is an alias method for `Map#contains`. Determine whether the
-   * map contains an item identified by the predicate function.
+   * Returns the size of the map.
    *
-   * @param {Function} predicate
-   *
-   * @returns {boolean}
+   * @returns {Number}
    */
-  includes (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
-    return this.contains(predicate)
+  size (): number {
+    return this.items.size
   }
 
   /**
-   * Determine whether the map contains an item identified by the predicate function.
+   * Returns an iterable of all values in the map.
    *
-   * @param {Function} predicate
-   *
-   * @returns {boolean}
+   * @returns {IterableIterator}
    */
-  contains (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): boolean {
-    return typeof predicate !== 'function'
-      ? this.has(predicate)
-      : this.filter(predicate).isNotEmpty()
+  values (): IterableIterator<V> {
+    return this.items.values()
   }
 }
