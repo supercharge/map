@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-0x-xx
+
+### Updated
+- bump dependencies
+
+
 ## [1.4.0](https://github.com/supercharge/map/compare/v1.3.0...v1.4.0) - 2021-07-05
 
 ### Added
