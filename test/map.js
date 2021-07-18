@@ -251,4 +251,14 @@ describe('Map', () => {
 
     expect(cache.toObject()).toEqual({ 1: 'Marcus', 2: 'Supercharge' })
   })
+
+  it('toArray', () => {
+    const cache = new Map({
+      1: 'Marcus', 2: 'Norman', 3: 'Christian'
+    })
+
+    expect(cache.toArray()).toEqual([
+      ['1', 'Marcus'], ['2', 'Norman'], ['3', 'Christian']
+    ])
+  })
 })

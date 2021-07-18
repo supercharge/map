@@ -218,7 +218,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @param {Function} transform
    *
-   * @returns {Array}
+   * @returns {R[]}
    */
   map<R> (transform: (key: K, value: V, map: SuperchargedMap<K, V>) => R): R[] {
     const results: R[] = []
@@ -278,6 +278,16 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    */
   size (): number {
     return this.items.size
+  }
+
+  /**
+   * Transforms the map to a JavaScript array containing arrays
+   * for each key-value-pair of this map.
+   *
+   * @returns {Array<[K, V]>}
+   */
+  toArray (): Array<[K, V]> {
+    return Array.from(this)
   }
 
   /**

@@ -2,6 +2,9 @@
 
 ## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-0x-xx
 
+### Added
+- add `toArray()` method: converting the map to a JavaScript array containing arrays for each key-value-pair of this map
+
 ### Updated
 - bump dependencies
 
@@ -13,6 +16,7 @@
   - you can now use `Map.of({ key: 'value' })` or `new Map({ key: 'value' })`
   - you can still use the key-value arrays for entries: `Map.of([['key', 'value']])`
 - add `isMissing(key)` method: determining whether the map is missing the given `key`
+- add `toObject()` method: converting the map to a plain JavaScript object
 
 ### Updated
 - bump dependencies
