@@ -1,10 +1,11 @@
 # Changelog
 
-## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-0x-xx
+## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-09-13
 
 ### Added
 - add `toArray()` method: converting the map to a JavaScript array containing arrays for each key-value-pair of this map
 - `Map.from()` method to create a new Map instance. This `Map.from` method aligns with JavaScript’s `Array.from` or `Object.fromX` methods
+- add `pick(...keys)` method: creating a new map with the picked `keys`
 
 ### Updated
 - bump dependencies
