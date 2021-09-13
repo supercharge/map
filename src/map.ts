@@ -51,7 +51,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    * @deprecated use `Map.from()` instead
    */
   static of<K, V> (entries?: Array<[K, V]> | Record<string, V>): SuperchargedMap<K, V> {
-    return new this<K, V>(entries)
+    return this.from(entries)
   }
 
   /**
@@ -277,10 +277,13 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    * @returns {SuperchargedMap<K,V>}
    */
   pick (...keys: K[]|K[][]): SuperchargedMap<K, V> {
-    const picked = ([] as K[]).concat(...keys)
+    const picked = SuperchargedMap.from(
+      ([] as K[]).concat(...keys).map(key => {
+        return [key, null]
+      }))
 
     return this.filter((key) => {
-      return picked.includes(key)
+      return picked.has(key)
     })
   }
 
