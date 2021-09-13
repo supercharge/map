@@ -4,6 +4,7 @@
 
 ### Added
 - add `toArray()` method: converting the map to a JavaScript array containing arrays for each key-value-pair of this map
+- `Map.from()` method to create a new Map instance. This `Map.from` method aligns with JavaScript’s `Array.from` or `Object.fromX` methods
 
 ### Updated
 - bump dependencies
