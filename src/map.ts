@@ -44,11 +44,24 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   /**
    * Create a new map instance of the given key/value pair `entries`.
    *
-   * @param {Array} entries
+   * @param {*} entries
+   *
+   * @returns {SuperchargedMap}
+   *
+   * @deprecated use `Map.from()` instead
+   */
+  static of<K, V> (entries?: Array<[K, V]> | Record<string, V>): SuperchargedMap<K, V> {
+    return new this<K, V>(entries)
+  }
+
+  /**
+   * Create a new map from the given `entries`.
+   *
+   * @param {*} entries
    *
    * @returns {SuperchargedMap}
    */
-  static of<K, V> (entries?: Array<[K, V]> | Record<string, V>): SuperchargedMap<K, V> {
+  static from<K, V> (entries?: Array<[K, V]> | Record<string, V>): SuperchargedMap<K, V> {
     return new this<K, V>(entries)
   }
 
@@ -114,8 +127,8 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @returns {SuperchargedMap}
    */
-  filter (predicate: (key: K, value: V, map: SuperchargedMap<K, V>) => boolean): SuperchargedMap<K, V> {
-    const results: SuperchargedMap<K, V> = new SuperchargedMap<K, V>()
+  filter (predicate: (key: K, value: V, predicate: SuperchargedMap<K, V>) => boolean): SuperchargedMap<K, V> {
+    const results = SuperchargedMap.from<K, V>()
 
     this.forEach((key: K, value: V) => {
       if (predicate(key, value, this)) {
@@ -254,6 +267,21 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    */
   isMissing (key: K): boolean {
     return !this.has(key)
+  }
+
+  /**
+   * Returns a map containing only the picked `keys`.
+   *
+   * @param {K[]|K[][]} keys
+   *
+   * @returns {SuperchargedMap<K,V>}
+   */
+  pick (...keys: K[]|K[][]): SuperchargedMap<K, V> {
+    const picked = ([] as K[]).concat(...keys)
+
+    return this.filter((key) => {
+      return picked.includes(key)
+    })
   }
 
   /**

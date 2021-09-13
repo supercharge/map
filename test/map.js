@@ -4,24 +4,24 @@ const Map = require('../dist')
 
 describe('Map', () => {
   it('of', () => {
-    expect(Map.of().isEmpty()).toBe(true)
-    expect(Map.of([]).isEmpty()).toBe(true)
-    expect(Map.of(null).isEmpty()).toBe(true)
-    expect(Map.of(undefined).isEmpty()).toBe(true)
+    expect(Map.from().isEmpty()).toBe(true)
+    expect(Map.from([]).isEmpty()).toBe(true)
+    expect(Map.from(null).isEmpty()).toBe(true)
+    expect(Map.from(undefined).isEmpty()).toBe(true)
 
-    expect(() => Map.of(['key', 'value'])).toThrow()
-    expect(() => Map.of([['key', 'value']])).not.toThrow()
-    expect(() => Map.of({ key: 'value' })).not.toThrow()
+    expect(() => Map.from(['key', 'value'])).toThrow()
+    expect(() => Map.from([['key', 'value']])).not.toThrow()
+    expect(() => Map.from({ key: 'value' })).not.toThrow()
 
-    expect(Map.of([['key', 'value']]).has('key')).toBe(true)
-    expect(Map.of([['key', 'value'], ['name', 'Marcus']]).has('key')).toBe(true)
+    expect(Map.from([['key', 'value']]).has('key')).toBe(true)
+    expect(Map.from([['key', 'value'], ['name', 'Marcus']]).has('key')).toBe(true)
 
-    expect(Map.of({ key: 'value' }).size()).toBe(1)
-    expect(Map.of({ key: 'value' }).has('key')).toBe(true)
+    expect(Map.from({ key: 'value' }).size()).toBe(1)
+    expect(Map.from({ key: 'value' }).has('key')).toBe(true)
   })
 
   it('clear', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -38,7 +38,7 @@ describe('Map', () => {
   })
 
   it('missing', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -50,7 +50,7 @@ describe('Map', () => {
   })
 
   it('isMissing', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -65,7 +65,7 @@ describe('Map', () => {
   })
 
   it('delete', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -80,7 +80,7 @@ describe('Map', () => {
   })
 
   it('entries', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -106,7 +106,7 @@ describe('Map', () => {
   })
 
   it('keys', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -150,7 +150,7 @@ describe('Map', () => {
   })
 
   it('values', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -183,7 +183,7 @@ describe('Map', () => {
   })
 
   it('for..of', () => {
-    const iterable = Map.of([
+    const iterable = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -201,7 +201,7 @@ describe('Map', () => {
   })
 
   it('Symbol.iterator', () => {
-    const map = Map.of([
+    const map = Map.from([
       [1, 'Marcus'],
       [2, 'Supercharge']
     ])
@@ -250,6 +250,8 @@ describe('Map', () => {
       .set(2, 'Supercharge')
 
     expect(cache.toObject()).toEqual({ 1: 'Marcus', 2: 'Supercharge' })
+
+    expect(new Map().toObject()).toEqual({})
   })
 
   it('toArray', () => {
@@ -260,5 +262,17 @@ describe('Map', () => {
     expect(cache.toArray()).toEqual([
       ['1', 'Marcus'], ['2', 'Norman'], ['3', 'Christian']
     ])
+  })
+
+  it('pick', () => {
+    const cache = new Map({
+      1: 'Marcus',
+      2: 'Norman',
+      3: 'Christian'
+    })
+
+    expect(cache.pick(1).toObject()).toEqual({ 1: 'Marcus' })
+    expect(cache.pick(1, 2).toObject()).toEqual({ 1: 'Marcus', 2: 'Norman' })
+    expect(cache.pick([2, 3]).toObject()).toEqual({ 2: 'Norman', 3: 'Christian' })
   })
 })
