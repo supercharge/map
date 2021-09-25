@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@supercharge/tsconfig": "~2.0.0",
-    "@typescript-eslint/eslint-plugin": "~4.31.0",
+    "@typescript-eslint/eslint-plugin": "~4.31.2",
     "c8": "~7.9.0",
     "eslint": "~7.32.0",
     "eslint-config-standard": "~16.0.3",
@@ -16,7 +16,7 @@
     "eslint-plugin-import": "~2.24.2",
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~5.1.0",
-    "expect": "~27.2.0",
+    "expect": "~27.2.1",
     "sinon": "~11.1.2",
     "typescript": "~4.4.3",
     "uvu": "~0.5.1"
