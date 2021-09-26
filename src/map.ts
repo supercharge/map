@@ -1,5 +1,7 @@
 'use strict'
 
+type ObjectType<V> = Record<string | number | symbol, V>
+
 export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
   /**
    * Contains the key-value-pairs in the map.
@@ -11,7 +13,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @param entries
    */
-  constructor (entries?: Array<[K, V]> | Record<string, V> | null) {
+  constructor (entries?: Array<[K, V]> | ObjectType<V> | null) {
     this.items = new Map<K, V>(
       this.createEntries(entries)
     )
@@ -24,21 +26,59 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @returns {Array}
    */
-  private createEntries (entries?: Array<[K, V]> | Record<string, V> | null): Array<[K, V]> {
+  private createEntries (entries?: Array<[K, V]> | ObjectType<V> | null): Array<[K, V]> {
     return Array.isArray(entries)
       ? entries
-      : this.createEntriesFromObject(entries)
+      : this.createEntriesFromObject(entries) as unknown as Array<[K, V]>
   }
 
   /**
-   * Create the internal map from the given `entries` object.
+   * Create the internal map from the given `entries` object. It preserves
+   * the key types (string, number, symbol) of the given `entries` object.
    *
    * @param {Object} entries
    *
    * @returns {Array}
    */
-  private createEntriesFromObject (entries?: Record<string, V> | null): Array<[K, V]> {
-    return Object.entries(entries ?? {}) as unknown as Array<[K, V]>
+  private createEntriesFromObject (entries?: ObjectType<V> | null): Array<[string|number|symbol, V]> {
+    const values = entries ?? {}
+
+    return Reflect.ownKeys(values).map(key => {
+      switch (true) {
+        case this.isSymbol(key):
+          return [key, values[key]]
+
+        case this.isNumber(key):
+          return [Number(key), values[key]]
+
+        default:
+          return [key, values[key]]
+      }
+    })
+
+    // return result as Array<[K, V]>
+  }
+
+  /**
+   * Determine whether the given `key` is a Symbol.
+   *
+   * @param {*} key
+   *
+   * @returns {Boolean}
+   */
+  private isSymbol (key: unknown): boolean {
+    return typeof key === 'symbol'
+  }
+
+  /**
+   * Determine whether the given `key` is a number.
+   *
+   * @param {*} key
+   *
+   * @returns {Boolean}
+   */
+  private isNumber (key: unknown): boolean {
+    return !isNaN(Number(key))
   }
 
   /**

@@ -277,16 +277,16 @@ test('toArray', () => {
   const cache = new Map({ 1: 'Marcus', 2: 'Norman', 3: 'Christian' })
 
   expect(cache.toArray()).toEqual([
-    ['1', 'Marcus'], ['2', 'Norman'], ['3', 'Christian']
+    [1, 'Marcus'], [2, 'Norman'], [3, 'Christian']
   ])
 })
 
 test('pick', () => {
   const cache = new Map({ 1: 'Marcus', 2: 'Norman', 3: 'Christian' })
 
-  expect(cache.pick('1').toObject()).toEqual({ 1: 'Marcus' })
-  expect(cache.pick('1', '2').toObject()).toEqual({ 1: 'Marcus', 2: 'Norman' })
-  expect(cache.pick(['2', '3']).toObject()).toEqual({ 2: 'Norman', 3: 'Christian' })
+  expect(cache.pick(1).toObject()).toEqual({ 1: 'Marcus' })
+  expect(cache.pick(1, 2).toObject()).toEqual({ 1: 'Marcus', 2: 'Norman' })
+  expect(cache.pick([2, 3]).toObject()).toEqual({ 2: 'Norman', 3: 'Christian' })
 
   const users = new Map()
     .set(1, 'Marcus')
@@ -295,6 +295,20 @@ test('pick', () => {
   expect(users.pick(1).toObject()).toEqual({ 1: 'Marcus' })
   expect(users.pick(1, 2).toObject()).toEqual({ 1: 'Marcus', 2: 'Supercharge' })
   expect(users.pick([1, 2]).toObject()).toEqual({ 1: 'Marcus', 2: 'Supercharge' })
+})
+
+test('keeps the key type when created from object', () => {
+  const users = new Map({
+    1: 'Marcus',
+    'user:2': 'Norman',
+    [Symbol.for('christian')]: 'Christian'
+  })
+
+  expect(users.toObject()).toEqual({
+    1: 'Marcus',
+    'user:2': 'Norman',
+    [Symbol.for('christian')]: 'Christian'
+  })
 })
 
 test.run()
