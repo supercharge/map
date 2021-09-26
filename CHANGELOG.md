@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.6.0](https://github.com/supercharge/map/compare/v1.5.0...v1.6.0) - 2021-xx-xx
+
+### Added
+- keep the key types when creating a map from an object
+  - for example, if a key is a number in an object it stays a number in the map
+  ```js
+  // object
+  { id: 1, name: 'Supercharge' }
+
+  // Map
+  map.has(1)
+  // true
+  map.has('1')
+  // false
+  ```
+
+### Updated
+- bump dependencies
+
+
 ## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-09-13
 
 ### Added
