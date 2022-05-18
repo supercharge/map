@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.6.0](https://github.com/supercharge/map/compare/v1.5.0...v1.6.0) - 2021-xx-xx
+## [2.0.0](https://github.com/supercharge/map/compare/v1.5.0...v2.0.0) - 2021-xx-xx
 
 ### Added
 - keep the key types when creating a map from an object
@@ -18,6 +18,9 @@
 
 ### Updated
 - bump dependencies
+
+### Breaking Changes
+- Require Node.js v14, drop support for Node.js v12
 
 
 ## [1.5.0](https://github.com/supercharge/map/compare/v1.4.0...v1.5.0) - 2021-09-13
