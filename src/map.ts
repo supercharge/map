@@ -40,7 +40,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @returns {Array}
    */
-  private createEntriesFromObject (entries?: ObjectType<V> | null): Array<[string|number|symbol, V]> {
+  private createEntriesFromObject (entries?: ObjectType<V> | null): Array<[string | number | symbol, V]> {
     const values = entries ?? {}
 
     return Reflect.ownKeys(values).map(key => {
@@ -316,7 +316,7 @@ export class SuperchargedMap<K, V> implements Iterable<[K, V]> {
    *
    * @returns {SuperchargedMap<K,V>}
    */
-  pick (...keys: K[]|K[][]): SuperchargedMap<K, V> {
+  pick (...keys: K[] | K[][]): SuperchargedMap<K, V> {
     const picked = SuperchargedMap.from(
       ([] as K[]).concat(...keys).map(key => {
         return [key, null]

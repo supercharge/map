@@ -3,7 +3,7 @@
 const Map = require('../dist')
 const Sinon = require('sinon')
 const { test } = require('uvu')
-const expect = require('expect')
+const { expect } = require('expect')
 
 test('of', () => {
   expect(Map.of().isEmpty()).toBe(true)
